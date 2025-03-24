@@ -1,0 +1,20 @@
+.main-container {
+  padding: 12px;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  gap: 12px;
+  background-color: #f3f5f7;
+  .right-content {
+    width: calc(100% - 72px);
+    height: calc(100% - 60px);
+  }
+  .oultet {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 6px;
+    margin-top: 12px;
+  }
+}
