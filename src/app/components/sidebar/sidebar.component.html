@@ -1,5 +1,9 @@
 <div class="sidebar-container">
-  <div class="icon-container" *ngFor="let item of sidebarRoutes">
+  <div
+    class="icon-container"
+    *ngFor="let item of sidebarRoutes"
+    [routerLink]="[item.route]"
+  >
     <img [src]="item.icon" alt="icon" />
   </div>
 </div>

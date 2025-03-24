@@ -1,0 +1,14 @@
+<header>
+  <p>Products</p>
+  <button>Add Product</button>
+</header>
+
+<div class="products-container">
+  <div class="product-card" *ngFor="let product of products">
+    <div class="image-box">
+      <img [src]="product?.image" alt="product-image" />
+    </div>
+    <p>{{ product.title }}</p>
+    <p>{{ product.price | currency }}</p>
+  </div>
+</div>
