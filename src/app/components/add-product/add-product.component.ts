@@ -1,11 +1,24 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { FakeStoreService } from 'src/app/core/services/fake-store.service';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
 })
@@ -15,8 +28,12 @@ export class AddProductComponent {
   ProductForm!: FormGroup;
   @Input() editMode: boolean = false;
   @ViewChild('inputField') inputField!: ElementRef;
+  @Output() isOpened = new EventEmitter<boolean>();
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly fakeStoreServ: FakeStoreService
+  ) {
     this.ProductForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(50)]],
       price: ['', [Validators.required, Validators.minLength(0)]],
@@ -48,6 +65,23 @@ export class AddProductComponent {
 
   // add product
   submitForm() {
-    console.log(this.ProductForm.value);
+    this.fakeStoreServ.addProduct(this.ProductForm.value).subscribe({
+      next: (result: any) => {
+        console.log(result);
+      },
+      error: (err) => {},
+      complete: () => {},
+    });
+  }
+
+  // remove Image
+  removeImage() {
+    this.imageUploaded = false;
+    this.previewUrl = '';
+    this.ProductForm.patchValue({ image: this.previewUrl });
+  }
+  // close popup
+  closePopup() {
+    this.isOpened.emit(false);
   }
 }

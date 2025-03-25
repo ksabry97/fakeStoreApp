@@ -17,21 +17,6 @@
       font-size: 18px;
       font-weight: 600;
     }
-
-    button {
-      background-color: #f4f4f4;
-      width: 25px;
-      height: 25px;
-      border: none;
-      border-radius: 5px;
-      transition: 0.3s;
-      outline: none;
-      color: var(--mainDarkColor);
-      cursor: pointer;
-      &:hover {
-        color: #ff4b55;
-      }
-    }
   }
   footer {
     display: flex;
@@ -61,6 +46,7 @@
     align-items: center;
     gap: 10px;
     .upload-img {
+      position: relative;
       width: 110px;
       height: 110px;
       border: 1px solid #ecf0f5;
@@ -82,6 +68,14 @@
       .uploaded-img {
         width: 100%;
         height: 100%;
+      }
+      .close-btn {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: -8%;
+        inset-inline-start: -1%;
+        font-size: 8px;
       }
     }
   }
@@ -127,5 +121,25 @@
   textarea {
     resize: none;
     height: 100px;
+  }
+}
+
+.close-btn {
+  background-color: #f4f4f4;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s;
+  outline: none;
+  color: var(--mainDarkColor);
+  cursor: pointer;
+  &:hover {
+    color: #ff4b55;
+  }
+}
+@media (max-width: 768px) {
+  .top-content {
+    flex-direction: column;
   }
 }

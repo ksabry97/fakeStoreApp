@@ -23,7 +23,14 @@
   &:hover {
     background-color: var(--hoverColor);
   }
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 }
 .w-100 {
   width: 100% !important;
+}
+.ng-invalid.ng-touched {
+  border-color: #ff4b55 !important;
 }

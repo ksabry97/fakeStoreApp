@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   searchQuery: string = '';
+  productPopupOpened: boolean = false;
   constructor(
     private readonly fakeStoreServ: FakeStoreService,
     private readonly router: Router
@@ -63,5 +64,9 @@ export class ProductsComponent implements OnInit {
   // track by function
   trackProduct(index: number, product: Product) {
     return product.id;
+  }
+  // open add product
+  openAddPeoduct() {
+    this.productPopupOpened = true;
   }
 }

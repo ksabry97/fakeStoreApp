@@ -1,3 +1,13 @@
+@keyframes popupOpening {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 header {
   width: 100%;
   display: flex;
@@ -101,4 +111,5 @@ header {
   -webkit-backdrop-filter: blur(0.5px);
   backdrop-filter: blur(0.2px);
   padding: 16px;
+  animation: popupOpening 0.3s ease-in-out;
 }

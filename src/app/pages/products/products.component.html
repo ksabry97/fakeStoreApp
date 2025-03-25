@@ -1,6 +1,6 @@
 <header>
   <p>Products</p>
-  <button class="primary-btn">Add Product</button>
+  <button class="primary-btn" (click)="openAddPeoduct()">Add Product</button>
 </header>
 
 <input
@@ -56,7 +56,7 @@
   </div>
 
   <!-- add product popup -->
-  <div class="product-pop">
-    <app-add-product></app-add-product>
+  <div class="product-pop" *ngIf="productPopupOpened">
+    <app-add-product (isOpened)="productPopupOpened = $event"></app-add-product>
   </div>
 </div>
