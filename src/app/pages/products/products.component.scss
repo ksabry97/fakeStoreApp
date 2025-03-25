@@ -4,7 +4,10 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-
+  p {
+    font-size: 24px;
+    font-weight: 600;
+  }
   button {
     border-radius: 4px;
     width: fit-content;
@@ -20,25 +23,52 @@ header {
   }
 }
 
+.search {
+  width: 40%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 0;
+  border-radius: 4px;
+  border: 0.75px solid rgba(131, 137, 159, 0.2);
+  background: #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--mainDarkColor);
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:active {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+}
+
 .products-container {
   display: flex;
-  gap: 6px;
+  gap: 24px;
   width: 100%;
   flex-wrap: wrap;
+  padding: 4px;
+  height: calc(100% - 100px);
+  overflow: auto;
   .product-card {
-    width: 200px;
-    height: 200px;
-    border: 1px solid red;
+    width: 375px;
+    height: 445px;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 12px;
+    gap: 12px;
+    padding: 24px;
     align-items: center;
     justify-content: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     .image-box {
       border-radius: 4px;
-      width: 50px;
-      height: 50px;
+      width: 240px;
+      height: 240px;
       img {
         width: 100%;
         height: 100%;
@@ -48,8 +78,27 @@ header {
 
     p {
       color: var(--mainDarkColor);
-      font-weight: 500;
+      font-weight: 600;
       text-align: center;
+    }
+    .price {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .details {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      cursor: pointer;
+      p {
+        text-decoration: underline;
+        color: var(--primary-color);
+        &:hover {
+          color: var(--hoverColor);
+        }
+      }
     }
   }
 }

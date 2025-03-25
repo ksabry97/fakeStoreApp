@@ -1,0 +1,21 @@
+<p class="back" (click)="goBack()">
+  <img
+    width="20"
+    height="20"
+    src="https://img.icons8.com/color/20/back--v1.png"
+    alt="back--v1"
+  />
+  Back
+</p>
+<div class="custom-container">
+  <div class="img-box">
+    <img [src]="product?.image" alt="product-image" />
+  </div>
+
+  <div class="product-details">
+    <p class="title">{{ product.title }}</p>
+    <p>{{ product.description }}</p>
+    <p class="price">{{ product.price | currency }}</p>
+    <p>{{ product.category }}</p>
+  </div>
+</div>

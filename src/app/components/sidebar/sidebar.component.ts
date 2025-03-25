@@ -10,6 +10,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
+  activeTab = 0;
   sidebarRoutes = [
     {
       route: 'home',

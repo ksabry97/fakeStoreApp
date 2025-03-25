@@ -10,8 +10,16 @@ export class FakeStoreService {
 
   baseUrl = Environment.baseUrl;
 
+  // get all products
   getAllProducts() {
     let url = this.baseUrl + `products`;
+    return this.http.get(url);
+  }
+
+  // get product
+
+  getProduct(productId: string) {
+    let url = this.baseUrl + `products/${productId}`;
     return this.http.get(url);
   }
 }

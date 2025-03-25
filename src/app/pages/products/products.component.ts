@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/core/interfaces/product';
 import { FakeStoreService } from 'src/app/core/services/fake-store.service';
 
@@ -8,11 +10,16 @@ import { FakeStoreService } from 'src/app/core/services/fake-store.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
-  constructor(private readonly fakeStoreServ: FakeStoreService) {}
+  filteredProducts: Product[] = [];
+  searchQuery: string = '';
+  constructor(
+    private readonly fakeStoreServ: FakeStoreService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -24,11 +31,36 @@ export class ProductsComponent implements OnInit {
     this.fakeStoreServ.getAllProducts().subscribe({
       next: (result: Product[] | any) => {
         this.products = result;
+        this.filteredProducts = [...this.products];
       },
       error: () => {
         console.log('error');
       },
       complete: () => {},
     });
+  }
+
+  // navigate to product details
+
+  navigate(id: number) {
+    this.router.navigate(['dashboard/product-details', id]);
+  }
+
+  // search in products
+  search() {
+    if (this.searchQuery.trim()) {
+      this.products = this.filteredProducts.filter((value) => {
+        return value.title
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+    } else {
+      this.products = [...this.filteredProducts];
+    }
+  }
+
+  // track by function
+  trackProduct(index: number, product: Product) {
+    return product.id;
   }
 }

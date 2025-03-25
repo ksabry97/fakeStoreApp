@@ -1,8 +1,10 @@
 <div class="sidebar-container">
   <div
     class="icon-container"
-    *ngFor="let item of sidebarRoutes"
+    *ngFor="let item of sidebarRoutes; let i = index"
     [routerLink]="[item.route]"
+    (click)="activeTab = i"
+    [ngClass]="{ activeTab: activeTab == i }"
   >
     <img [src]="item.icon" alt="icon" />
   </div>
