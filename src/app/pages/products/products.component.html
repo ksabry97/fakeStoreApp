@@ -1,6 +1,6 @@
 <header>
   <p>Products</p>
-  <button>Add Product</button>
+  <button class="primary-btn">Add Product</button>
 </header>
 
 <input
@@ -53,5 +53,10 @@
       </svg>
       <p (click)="navigate(product.id)">details</p>
     </div>
+  </div>
+
+  <!-- add product popup -->
+  <div class="product-pop">
+    <app-add-product></app-add-product>
   </div>
 </div>

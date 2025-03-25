@@ -1,0 +1,41 @@
+<div class="add-product-popup">
+  <header>
+    <p>{{ editMode ? "Edit Product" : "Add Product" }}</p>
+    <button>X</button>
+  </header>
+  <div class="main-section">
+    <div class="top-content">
+      <div class="upload-img" *ngIf="imageUploaded">
+        <img class="uploaded-img" [src]="previewUrl" alt="Image Preview" />
+      </div>
+      <div class="upload-img" *ngIf="!imageUploaded" (click)="openUpload()">
+        <img src="assets/cloud-upload.svg" />
+        <p>upload image</p>
+        <input
+          type="file"
+          [hidden]="true"
+          #inputField
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <div class="group-form">
+        <label for="title">Title <span>*</span></label>
+        <input type="text" id="title" />
+        <label for="price">Price <span>*</span></label>
+        <input type="number" id="price" />
+      </div>
+    </div>
+    <div class="top-content">
+      <div class="group-form w-100">
+        <label for="description">Description</label>
+        <textarea id="description"></textarea>
+        <label for="price">Category</label>
+        <input type="number" id="price" />
+      </div>
+    </div>
+  </div>
+  <footer>
+    <button class="primary-btn" (click)="submitForm()">Add Product</button>
+  </footer>
+</div>

@@ -8,19 +8,6 @@ header {
     font-size: 24px;
     font-weight: 600;
   }
-  button {
-    border-radius: 4px;
-    width: fit-content;
-    padding: 6px;
-    background-color: var(--primary-color);
-    cursor: pointer;
-    color: #fff;
-    outline: none;
-    border: none;
-    &:hover {
-      background-color: var(--hoverColor);
-    }
-  }
 }
 
 .search {
@@ -47,6 +34,7 @@ header {
 }
 
 .products-container {
+  position: relative;
   display: flex;
   gap: 24px;
   width: 100%;
@@ -101,4 +89,16 @@ header {
       }
     }
   }
+}
+.product-pop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: calc(100vw - 170px);
+  height: calc(100vh - 220px);
+  position: absolute;
+  background-color: rgb(214 219 227 / 10%);
+  -webkit-backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.2px);
+  padding: 16px;
 }

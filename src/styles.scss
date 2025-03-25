@@ -10,3 +10,20 @@
   --hoverColor: #3180de;
   --mainDarkColor: #1c1c28;
 }
+
+.primary-btn {
+  border-radius: 4px;
+  width: fit-content;
+  padding: 6px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  &:hover {
+    background-color: var(--hoverColor);
+  }
+}
+.w-100 {
+  width: 100% !important;
+}

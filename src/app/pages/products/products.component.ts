@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AddProductComponent } from 'src/app/components/add-product/add-product.component';
 import { Product } from 'src/app/core/interfaces/product';
 import { FakeStoreService } from 'src/app/core/services/fake-store.service';
 
@@ -10,7 +11,7 @@ import { FakeStoreService } from 'src/app/core/services/fake-store.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AddProductComponent],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
