@@ -87,9 +87,14 @@ header {
     .details {
       width: 100%;
       display: flex;
-      justify-content: flex-end;
-      gap: 6px;
+      align-items: center;
+      justify-content: space-between;
       cursor: pointer;
+      .left {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
       p {
         text-decoration: underline;
         color: var(--primary-color);

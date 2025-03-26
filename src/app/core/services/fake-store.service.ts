@@ -23,9 +23,19 @@ export class FakeStoreService {
     let url = this.baseUrl + `products/${productId}`;
     return this.http.get(url);
   }
-
+  //  add product
   addProduct(product: any) {
     let url = this.baseUrl + `products`;
     return this.http.post(url, product);
+  }
+  //  update product
+  updateProduct(productId: string, product: Product) {
+    let url = this.baseUrl + `products/${productId}`;
+    return this.http.put(url, product);
+  }
+  // delete product
+  deleteProduct(productId: string) {
+    let url = this.baseUrl + `products/${productId}`;
+    return this.http.delete(url);
   }
 }

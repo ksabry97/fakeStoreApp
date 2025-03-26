@@ -3,7 +3,9 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +16,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { FakeStoreService } from 'src/app/core/services/fake-store.service';
+import { Product } from 'src/app/core/interfaces/product';
 
 @Component({
   selector: 'app-add-product',
@@ -22,20 +25,22 @@ import { FakeStoreService } from 'src/app/core/services/fake-store.service';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnChanges {
   previewUrl: string | ArrayBuffer | null = null;
   imageUploaded: boolean = false;
   ProductForm!: FormGroup;
   @Input() editMode: boolean = false;
+  @Input() productId!: number;
   @ViewChild('inputField') inputField!: ElementRef;
   @Output() isOpened = new EventEmitter<boolean>();
+  @Output() productEmitted = new EventEmitter<Product>();
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly fakeStoreServ: FakeStoreService
   ) {
     this.ProductForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(50)]],
+      title: ['', [Validators.required]],
       price: ['', [Validators.required, Validators.minLength(0)]],
       description: [''],
       category: [''],
@@ -65,13 +70,27 @@ export class AddProductComponent {
 
   // add product
   submitForm() {
-    this.fakeStoreServ.addProduct(this.ProductForm.value).subscribe({
-      next: (result: any) => {
-        console.log(result);
-      },
-      error: (err) => {},
-      complete: () => {},
-    });
+    if (!this.editMode) {
+      this.fakeStoreServ.addProduct(this.ProductForm.value).subscribe({
+        next: (result: any) => {
+          this.productEmitted.emit(result);
+          this.closePopup();
+        },
+        error: (err) => {},
+        complete: () => {},
+      });
+    } else {
+      this.fakeStoreServ
+        .updateProduct(this.productId.toString(), this.ProductForm.value)
+        .subscribe({
+          next: (result: any) => {
+            this.productEmitted.emit(result);
+            this.closePopup();
+          },
+          error: (err) => {},
+          complete: () => {},
+        });
+    }
   }
 
   // remove Image
@@ -83,5 +102,24 @@ export class AddProductComponent {
   // close popup
   closePopup() {
     this.isOpened.emit(false);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['editMode'] && this.editMode) {
+      this.fakeStoreServ.getProduct(this.productId.toString()).subscribe({
+        next: (result: Product | any) => {
+          this.ProductForm.patchValue(result);
+          this.ProductForm.markAllAsTouched();
+          if (result?.image) {
+            this.imageUploaded = true;
+            this.previewUrl = result.image;
+          }
+        },
+        error: () => {
+          console.log('error');
+        },
+        complete: () => {},
+      });
+    }
   }
 }

@@ -18,6 +18,9 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   searchQuery: string = '';
   productPopupOpened: boolean = false;
+  editMode: boolean = false;
+  productId!: number;
+  editedproductIndex: number | null = null;
   constructor(
     private readonly fakeStoreServ: FakeStoreService,
     private readonly router: Router
@@ -66,7 +69,36 @@ export class ProductsComponent implements OnInit {
     return product.id;
   }
   // open add product
-  openAddPeoduct() {
+  openAddProduct() {
+    this.editMode = false;
     this.productPopupOpened = true;
+  }
+  // edit product
+  openEditProduct(id: number, i: number) {
+    this.editMode = true;
+    this.productPopupOpened = true;
+    this.productId = id;
+    this.editedproductIndex = i;
+  }
+  // update list after adding or editing product
+  updateProductList(product: Product) {
+    if (!this.editMode) {
+      this.products.unshift(product);
+    } else {
+      if (this.editedproductIndex !== null) {
+        this.products.splice(this.editedproductIndex, 1, product);
+      }
+    }
+  }
+
+  // delete product
+  deleteProduct(id: number, i: number) {
+    this.fakeStoreServ.deleteProduct(id.toString()).subscribe({
+      next: () => {
+        this.products.splice(i, 1);
+      },
+      error: () => {},
+      complete: () => {},
+    });
   }
 }
