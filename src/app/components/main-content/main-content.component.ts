@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,8 +6,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './main-content.component.html',
-  styleUrls: ['./main-content.component.scss']
+  styleUrls: ['./main-content.component.scss'],
 })
-export class MainContentComponent {
-
+export class MainContentComponent implements OnInit {
+  username: string = '';
+  ngOnInit(): void {
+    this.username = localStorage.getItem('username') || '';
+  }
 }

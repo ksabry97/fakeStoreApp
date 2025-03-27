@@ -3,8 +3,8 @@
     class="icon-container"
     *ngFor="let item of sidebarRoutes; let i = index"
     [routerLink]="[item.route]"
-    (click)="activeTab = i"
-    [ngClass]="{ activeTab: activeTab == i }"
+    (click)="setActiveTab(i)"
+    [ngClass]="{ activeTab: activeTab == i, disbaled: i == 2 }"
   >
     <img [src]="item.icon" alt="icon" />
   </div>

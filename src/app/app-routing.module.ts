@@ -5,6 +5,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { AuthGuard } from './core/authGuard/auth-guard';
 
 const routes: Routes = [
   {
@@ -14,6 +16,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: MainPageComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -28,6 +31,10 @@ const routes: Routes = [
         component: ProductDetailsComponent,
       },
     ],
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
   },
 ];
 

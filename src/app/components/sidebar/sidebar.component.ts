@@ -9,7 +9,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   activeTab = 0;
   sidebarRoutes = [
     {
@@ -26,14 +26,12 @@ export class SidebarComponent {
     },
   ];
 
-  isActiveTab = false;
+  ngOnInit(): void {
+    this.activeTab = +(localStorage.getItem('activeTab') || 0);
+  }
 
-  constructor(private readonly activatedRoute: ActivatedRoute) {}
-
-  checkActiveTab(route: string) {
-    let url;
-    this.activatedRoute.url.subscribe((value) => {
-      url = value;
-    });
+  setActiveTab(activeIndex: number) {
+    this.activeTab = activeIndex;
+    localStorage.setItem('activeTab', activeIndex.toString());
   }
 }

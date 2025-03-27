@@ -1,1 +1,13 @@
-<header></header>
+<header>
+  <div class="left">
+    <div class="img-box">
+      <img src="assets/user-profile.svg" alt="profile-icon" />
+    </div>
+    <p>{{ username }}</p>
+  </div>
+
+  <button (click)="logOut()">
+    <img src="assets/logout.png" alt="logout-icon" />
+    Log Out
+  </button>
+</header>

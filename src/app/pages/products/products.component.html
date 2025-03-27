@@ -15,7 +15,12 @@
     *ngFor="let product of products; let i = index; trackBy: trackProduct"
   >
     <div class="image-box">
-      <img [src]="product?.image" alt="product-image" />
+      <img
+        [src]="
+          product.image ? product.image : 'assets/No-Image-Placeholder.svg'
+        "
+        alt="product-image"
+      />
     </div>
     <p>{{ product.title }}</p>
     <p class="price">{{ product.price | currency }}</p>
@@ -61,6 +66,10 @@
     </div>
   </div>
 
+  <div class="empty-state" *ngIf="!products.length">
+    <img src="assets/no-results-found.svg" alt="no-results" />
+    <p>No Results Found</p>
+  </div>
   <!-- add product popup -->
   <div class="product-pop" *ngIf="productPopupOpened">
     <app-add-product
