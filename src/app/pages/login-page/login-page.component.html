@@ -1,1 +1,21 @@
-<p>login-page works!</p>
+<div class="login-page">
+  <div class="login-container">
+    <h1>Hello, Again ✌️</h1>
+    <h2>Login Page</h2>
+    <form [formGroup]="loginForm">
+      <label>Email <span>*</span></label>
+      <input type="text" formControlName="username" />
+      <label>Password <span>*</span></label>
+      <input type="password" formControlName="password" />
+
+      <span class="error-msg">{{ errorMsg }}</span>
+      <button
+        class="primary-btn"
+        [disabled]="loginForm.invalid"
+        (click)="login()"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

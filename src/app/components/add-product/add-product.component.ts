@@ -62,7 +62,7 @@ export class AddProductComponent implements OnChanges {
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result;
-        this.ProductForm.patchValue({ image: this.previewUrl });
+        // this.ProductForm.patchValue({ image: this.previewUrl }); add image to the product submit form
       };
       reader.readAsDataURL(file);
     }

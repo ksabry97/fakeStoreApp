@@ -38,4 +38,11 @@ export class FakeStoreService {
     let url = this.baseUrl + `products/${productId}`;
     return this.http.delete(url);
   }
+
+  // login
+  login(loginForm: any) {
+    let reqBody = loginForm;
+    let url = this.baseUrl + `auth/login`;
+    return this.http.post(url, reqBody);
+  }
 }
