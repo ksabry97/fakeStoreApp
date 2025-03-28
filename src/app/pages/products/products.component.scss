@@ -51,6 +51,7 @@ header {
   padding: 4px;
   height: calc(100% - 100px);
   overflow: auto;
+  justify-content: center;
   .product-card {
     width: 375px;
     height: 445px;
@@ -137,5 +138,21 @@ header {
     width: 70%;
     height: 70%;
     object-fit: contain;
+  }
+}
+
+@media (max-width: 760px) {
+  .products-container {
+    justify-content: center;
+    .product-card {
+      width: 250px;
+    }
+  }
+  .search {
+    width: 100%;
+  }
+  .product-pop {
+    align-items: center;
+    height: calc(100vh - 345px);
   }
 }

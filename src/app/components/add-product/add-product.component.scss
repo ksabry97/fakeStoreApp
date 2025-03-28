@@ -1,3 +1,12 @@
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .add-product-popup {
   width: 500px;
   height: fit-content;
@@ -138,8 +147,30 @@
     color: #ff4b55;
   }
 }
-@media (max-width: 768px) {
+
+.primary-btn {
+  min-width: 60px;
+}
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@media (max-width: 760px) {
   .top-content {
     flex-direction: column;
+  }
+  .add-product-popup {
+    width: 300px;
+
+    .group-form {
+      width: 100%;
+    }
   }
 }

@@ -41,10 +41,11 @@
   <footer>
     <button
       class="primary-btn"
-      [disabled]="ProductForm.invalid"
+      [disabled]="ProductForm.invalid || loading"
       (click)="submitForm()"
     >
-      {{ editMode ? "Edit" : "Add Product" }}
+      <span class="loader" *ngIf="loading"></span>
+      {{ loading ? "" : editMode ? "Edit" : "Add Product" }}
     </button>
   </footer>
 </div>

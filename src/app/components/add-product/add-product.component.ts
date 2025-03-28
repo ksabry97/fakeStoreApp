@@ -29,6 +29,8 @@ export class AddProductComponent implements OnChanges {
   previewUrl: string | ArrayBuffer | null = null;
   imageUploaded: boolean = false;
   ProductForm!: FormGroup;
+  loading: boolean = false;
+
   @Input() editMode: boolean = false;
   @Input() productId!: number;
   @ViewChild('inputField') inputField!: ElementRef;
@@ -70,13 +72,17 @@ export class AddProductComponent implements OnChanges {
 
   // add product
   submitForm() {
+    this.loading = true;
     if (!this.editMode) {
       this.fakeStoreServ.addProduct(this.ProductForm.value).subscribe({
         next: (result: any) => {
           this.productEmitted.emit(result);
           this.closePopup();
+          this.loading = false;
         },
-        error: (err) => {},
+        error: (err) => {
+          this.loading = false;
+        },
         complete: () => {},
       });
     } else {
@@ -86,8 +92,11 @@ export class AddProductComponent implements OnChanges {
           next: (result: any) => {
             this.productEmitted.emit(result);
             this.closePopup();
+            this.loading = false;
           },
-          error: (err) => {},
+          error: (err) => {
+            this.loading = false;
+          },
           complete: () => {},
         });
     }
