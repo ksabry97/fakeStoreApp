@@ -154,5 +154,7 @@ header {
   .product-pop {
     align-items: center;
     height: calc(100vh - 345px);
+    top: 25%;
+    inset-inline-start: 22%;
   }
 }
